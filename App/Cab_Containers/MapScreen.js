@@ -13,7 +13,7 @@ import ActionCard from '../Cab_Components/ActionCard/ActionCard';
 import PlacesCard from '../Cab_Components/PlacesCard';
 import GeoPermissionFailed from '../Cab_Components/Permissions/GeoPermissionFailed';
 
-  import FCM from 'react-native-fcm';
+  // import FCM from 'react-native-fcm';
 
 
 import { bindActionCreators } from 'redux';
@@ -28,29 +28,29 @@ export default class MapScreen extends React.Component {
     dispatch: PropTypes.func
   }
 
-  componentWillMount() {
-    FCM.requestPermissions();
-    FCM.getFCMToken().then(token => {
-      console.log(token)
-      // store fcm token in your server
-    });
-    this.notificationUnsubscribe = FCM.on('notification', (notif) => {
-      // there are two parts of notif. notif.notification contains the notification payload, notif.data contains data payload
-    });
-    this.refreshUnsubscribe = FCM.on('refreshToken', (token) => {
-      console.log(token)
-      // fcm token may not be available on first load, catch it here
-    });
+  // componentWillMount() {
+  //   FCM.requestPermissions();
+  //   FCM.getFCMToken().then(token => {
+  //     console.log(token)
+  //     // store fcm token in your server
+  //   });
+  //   this.notificationUnsubscribe = FCM.on('notification', (notif) => {
+  //     // there are two parts of notif. notif.notification contains the notification payload, notif.data contains data payload
+  //   });
+  //   this.refreshUnsubscribe = FCM.on('refreshToken', (token) => {
+  //     console.log(token)
+  //     // fcm token may not be available on first load, catch it here
+  //   });
 
-    FCM.subscribeToTopic('/topics/foo-bar');
-    FCM.unsubscribeFromTopic('/topics/foo-bar');
-  }
+  //   FCM.subscribeToTopic('/topics/foo-bar');
+  //   FCM.unsubscribeFromTopic('/topics/foo-bar');
+  // }
 
-  componentWillUnmount() {
-    // prevent leak
-    this.refreshUnsubscribe();
-    this.notificationUnsubscribe();
-  }
+  // componentWillUnmount() {
+  //   // prevent leak
+  //   this.refreshUnsubscribe();
+  //   this.notificationUnsubscribe();
+  // }
 
   _renderMapBlock() {
       const { actions, ui, journey } = this.props;
